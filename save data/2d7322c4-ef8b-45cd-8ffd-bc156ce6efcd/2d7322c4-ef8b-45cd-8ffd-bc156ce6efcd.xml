@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="9">
+<class_obj class_id="0" tracking_level="0" version="2">
+	<format class_id="1" tracking_level="0" version="0">
+		<count>9</count>
+		<item_version>0</item_version>
+                <item>index</item>
+		<item>trekId</item>
+		<item>globalTime</item>
+                <item>particleName</item>
+                <item>processName</item>
+                <item>x</item>
+                <item>y</item>
+                <item>z</item>
+                <item>deposit</item>
+	</format>
+	<id>2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd</id>
+	<data_files_name>
+		<count>1</count>
+		<item_version>0</item_version>
+		<item>geant.dat</item>
+	</data_files_name>
+	<size_buff>50</size_buff>
+	<suffix_current_file>17</suffix_current_file>
+	<current_row>1</current_row>
+	<row_size_file>10000</row_size_file>
+	<precision>4</precision>
+	<index_files>
+		<count>0</count>
+		<item_version>0</item_version>
+		</index_files>
+</class_obj>
+</boost_serialization>
+
