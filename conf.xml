@@ -2,69 +2,68 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="9">
 <transformation class_id="0" tracking_level="0" version="0">
-	<id>2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd</id>
+	<data_source>
+./save data/2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd/2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd.xml
+# here place path to data storage configuration file</data_source>
 	<discretization>0.01</discretization>
-	<seed>0</seed>
-	<read>deposit globalTime index particleName</read>
-	<selector>particleName</selector>
-        <time>globalTime</time>
+	<seed>3</seed>
+	<read>deposit globalTime index particleName #list of used varibles. Also, ones have to be inevitably defined at data storage configuration file. You may use them and predefined x varible below to define transformations</read>
+	<selector>particleName  # denotes varible which responds to particle type. Till one doesn't specify it, the impulse transformation (tag named first) uses 0 always</selector>
+        <time> globalTime #if this is not specified impulse won't generate. Only amplitude-space transformation will be applied to each data line</time>
 	<impulse class_id="1" tracking_level="0" version="0">
 		<count>3</count>
 		<item_version>0</item_version>
 		<item class_id="2" tracking_level="0" version="0">
 			<first>0</first>
 			<second class_id="3" tracking_level="0" version="0">
-				<count>3</count>
+				<count>2</count>
 				<item_version>0</item_version>
-				<item>1 + x#function</item>
-				<item>0 9 # x interval</item>
-				<item> 0 #dispersion</item>
+				<item>1 + x #function which describes impulse form</item>
+				<item>10 # x changes from 0 to this value, i.e. this is duration</item>
 			</second>
 		</item>
                 <item class_id="2" tracking_level="0" version="0">
 			<first>1</first>
 			<second class_id="3" tracking_level="0" version="0">
-				<count>3</count>
+				<count>2</count>
 				<item_version>0</item_version>
-				<item>deposit * exp(-(x-2)^2) - globalTime +
+				<item>deposit * exp(-(x-2)^2) + globalTime +
                                       exp(- index * x ^2) + 
-                                      globalTime #function</item>
-				<item>0 0 # x interval</item>
-				<item> 0 #dispersion</item>
+                                      globalTime  </item>
+				<item>10 </item>
 			</second>
 		</item>
                 <item class_id="2" tracking_level="0" version="0">
 			<first>2</first>
 			<second class_id="3" tracking_level="0" version="0">
-				<count>3</count>
+				<count>2</count>
 				<item_version>0</item_version>
-				<item>deposit + globalTime - index - x  #function</item>
-				<item>1 1.7 # x interval</item>
-				<item> 0 #dispersion</item>
+				<item>deposit + globalTime + x</item>
+				<item>10 </item>
 			</second>
 		</item>
 	</impulse>
-	<write></write>
-	<amplitude_space_characteristic>
+	<amplitude-space>
 		<count>2</count>
 		<item_version>0</item_version>
 		<item>
-			<first>./output/1.dat</first>
+			<first>1.dat</first>
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>
-				<item>index + deposit + 2 #function</item>
-				<item>index #dispersion</item>
+				<item>index #function</item>
+				<item>0 #dispersion</item>
 			</second>
 		</item>
                 <item>
-			<first>./output/2.dat</first>
+			<first>2.dat</first>
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>
-				<item>deposit + 12 #function</item>
-				<item>index #dispersion</item>
+				<item>deposit </item>
+				<item>0 </item>
 			</second>
 		</item>
-	</amplitude_space_characteristic>
+	</amplitude-space>
+        <write>index deposit globalTime # additional output. If time doesn't specified this cause just copy corresponding values to output file, otherwise meaningful only time varible</write>
 </transformation>

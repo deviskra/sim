@@ -146,7 +146,6 @@ class DataStorage
 	void seek_f_end();
 	void seek_i_beg();
 	void seek_i_end();
-
 };
 BOOST_CLASS_VERSION(DataStorage, 2)
 #endif

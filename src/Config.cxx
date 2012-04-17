@@ -9,23 +9,23 @@
 Config::Config(){
 
 //filling configuration file template
-   id = "2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd";
+   data_source = "./save data/2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd/2d7322c4-ef8b-45cd-8ffd-bc156ce6efcd.xml \n # here place path to data storage configuration file";
    seed = 0;
    dt = 0.001;
-   read = " time energy particle xx yy zz";
-   selector = "particle";
-   time = "time";
+   read = " deposit globalTime index particleName #list of used varibles. Also, ones have to be inevitably defined at data storage configuration file. You may use them and predefined x varible below to define transformation";
+   selector = "particleName  # denotes varible which responds to particle type. Till one doesn't specify it, the impulse transformation (tag named first) uses 0 always";
+   time = "globalTime #if this is not specified impulse won't generate. Only amplitude-space transformation will be applied";
 
-   impulse[0].push_back("time * energy * x + x**4     #impulse function example");
-   impulse[0].push_back("0 1 # x interval");
-   impulse[0].push_back("exp(energy) #dispersion example");
+   impulse[0].push_back(" x + deposit  #function which describes impulse form");
+   impulse[0].push_back("10 # x changes from 0 to this value, i.e. this is duration");
+   //impulse[0].push_back("exp(energy) #dispersion example");
+      asc["output001.dat"].push_back(" globalTime + x^2 #amplitude-space characteristic");
+   asc["output001.dat"].push_back(" 0 #dispersion");
 
-   asc["output001.dat"].push_back(" xx^3 + yy + zz^2 + 1 #amplitude-space characteristic example");
-   asc["output001.dat"].push_back("xx * yy * energy #dispersion example");
-
-   asc["output002.dat"].push_back(" (xx - 7) ^3 + exp(- yy) + zz^2 #amplitude-space characteristic example");
-   asc["output002.dat"].push_back("xx * yy * energy^3 #dispersion example");
-      
+   asc["output002.dat"].push_back(" deposit + sin(globalTime) #amplitude-space characteristic");
+   asc["output002.dat"].push_back(" exp(-deposit) #dispersion");
+   
+   write = "globalTime # additional output. If time doesn't specified this cause just copy corresponding values to output file, otherwise meaningful only time varible";
 }
 
 Config::Config(const char * fname){

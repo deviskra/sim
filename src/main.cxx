@@ -7,7 +7,7 @@ int main(int argc, char * argv[]){
    conf.loadFromXML("conf.xml");
 
    Process pr(conf);
+   pr.run();
 
-   //std::cout << "end" << std::endl;
    
 }

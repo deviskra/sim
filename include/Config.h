@@ -18,14 +18,13 @@ class Config{
 public:
    double seed, dt;
    
-   std::string id, read, selector, time, write;
+   std::string data_source, read, selector, time, write;
    
    std::map<std::string, std::vector<std::string> > asc; // <filename, transformation>
                                                     
    std::map<int, std::vector<std::string> > impulse; // <selector, transformation>
   
-   enum {kGamma = 0, kElectron};
-  
+     
 public:
 
    Config();
@@ -43,7 +42,7 @@ namespace boost{
    
       template<typename Archive>
       void serialize(Archive &ar, Config &conf, const unsigned int){
-         ar & make_nvp("id", conf.id)
+         ar & make_nvp("data_source", conf.data_source)
             & make_nvp("discretization", conf.dt)
             & make_nvp("seed", conf.seed)
 			
@@ -52,8 +51,8 @@ namespace boost{
             & make_nvp("time", conf.time)
             & make_nvp("impulse", conf.impulse)
 			
-            & make_nvp("write", conf.write)
-            & make_nvp("amplitude_space_characteristic", conf.asc);
+            & make_nvp("amplitude-space", conf.asc)
+            & make_nvp("write", conf.write);
       }
 
 }
